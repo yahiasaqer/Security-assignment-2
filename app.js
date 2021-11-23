@@ -39,7 +39,7 @@ app.get('/', function(request, response){
       console.log(rows);
       console.log('This function will return a list of all stored items from database ' + rows);
       response.setHeader('Content-Type','application/json')
-      response.send(JSON.stringify(rows));
+      response.send(JSON.stringify(rows) + req.connection.remoteAddress);
   
   
   });
@@ -74,12 +74,10 @@ app.post('/log-tracking', function(req, res) {
     console.log('In Session for: ', logMsg);
     console.log('Time of the visit:', currentDate);
     console.log('Tracking info: ', trackInfo);
-    console.log ( req.connection.remoteAddress
- );
+    console.log (ip.address);
     console.log("URL: "+ requrl); //getting the url
 
-  db.run(`INSERT INTO victims(time, ip, url) VALUES(?,?,?)`, [currentDate,req.connection.remoteAddress
-.toString(), requrl.toString()], function(err) {
+  db.run(`INSERT INTO victims(time, ip, url) VALUES(?,?,?)`, [currentDate,ip.address.toString(), requrl.toString()], function(err) {
   if (err) {
     return console.log(err.message);
   }
