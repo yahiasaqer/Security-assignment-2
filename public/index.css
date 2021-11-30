@@ -13,12 +13,12 @@ body {
     padding: 0.25em 1em;
     border: 2px solid palevioletred;
     border-radius: 3px;
-    background: white;
-    color: blue;
+    background: blue;
+    color: black;
     cursor: pointer;
 }
 
 .btn.primary {
-    background: palevioletred;
-    color: white;
+    background: blue;
+    color: black;
 }
